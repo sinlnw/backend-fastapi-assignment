@@ -8,10 +8,10 @@ import requests
 IP = "127.0.0.1"       # default: 127.0.0.1
 PORT = "8000"          # default: 8000
 
-DATABASE_NAME = "hotel"
-COLLECTION_NAME = "reservation"
-MONGO_DB_URL = f"mongodb://localhost"   # mongodb://localhost
-MONGO_DB_PORT = 27017                   # 27017      
+DATABASE_NAME = "exceed07"
+COLLECTION_NAME = "reservation_rachata"
+MONGO_DB_URL = f"mongodb://exceed07:8td6VF6w@mongo.exceed19.online"   # mongodb://localhost
+MONGO_DB_PORT = 8443                   # 27017      
 
 BASE_URL = f"http://{IP}:{PORT}"
 
