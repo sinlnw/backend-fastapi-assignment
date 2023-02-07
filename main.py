@@ -43,13 +43,31 @@ def room_avaliable(room_id: int, start_date: str, end_date: str):
 
 @app.get("/reservation/by-name/{name}")
 def get_reservation_by_name(name: str):
-    res = collection.find({'name': name})
-    return res
+    res = collection.find({'name': str(name)})
+    res_list =[]
+    for i in res:
+        i = dict(i)
+        res_list.append({
+            "name": i['name'],
+            "start_date": str(i['start_date']),
+            "end_date": str(i['end_date']),
+            "room_id": i['room_id']
+})
+    return {'result': res_list}
 
 @app.get("/reservation/by-room/{room_id}")
 def get_reservation_by_room(room_id: int):
     res = collection.find({'room_id': room_id})
-    return res
+    res_list =[]
+    for i in res:
+        i = dict(i)
+        res_list.append({
+            "name": i['name'],
+            "start_date": str(i['start_date']),
+            "end_date": str(i['end_date']),
+            "room_id": i['room_id']
+})
+    return {'result': res_list}
 
 @app.post("/reservation")
 def reserve(reservation : Reservation):
