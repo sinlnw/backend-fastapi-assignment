@@ -1,6 +1,8 @@
 from pymongo import MongoClient
 import unittest
 import requests
+from dotenv import load_dotenv
+import os
 
 # TODO change IP and PORT to your fastapi deployment
 # TODO set DATABASE_NAME, COLLECTION_NAME, MONGO_DB_URL, and MONGO_DB_PORT (same as main.py)
@@ -8,9 +10,12 @@ import requests
 IP = "127.0.0.1"       # default: 127.0.0.1
 PORT = "8000"          # default: 8000
 
+load_dotenv(".env")
+username = os.getenv("usernames")
+password = os.getenv('password')
 DATABASE_NAME = "exceed07"
 COLLECTION_NAME = "reservation_rachata"
-MONGO_DB_URL = f"mongodb://exceed07:8td6VF6w@mongo.exceed19.online"   # mongodb://localhost
+MONGO_DB_URL = f"mongodb://{username}:{password}@mongo.exceed19.online"   # mongodb://localhost
 MONGO_DB_PORT = 8443                   # 27017      
 
 BASE_URL = f"http://{IP}:{PORT}"

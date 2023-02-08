@@ -2,12 +2,16 @@ from fastapi import FastAPI, HTTPException, Body
 from datetime import date
 from pymongo import MongoClient
 from pydantic import BaseModel
+from dotenv import load_dotenv
+import os
 
+load_dotenv(".env")
+username = os.getenv("usernames")
+password = os.getenv('password')
 DATABASE_NAME = "exceed07"
 COLLECTION_NAME = "reservation_rachata"
-MONGO_DB_URL = f"mongodb://exceed07:8td6VF6w@mongo.exceed19.online"   # mongodb://localhost
+MONGO_DB_URL = f"mongodb://{username}:{password}@mongo.exceed19.online"   # mongodb://localhost
 MONGO_DB_PORT = 8443 
-#mongodb://exceed07:8td6VF6w@mongo.exceed19.online:8443/?authMechanism=DEFAULT
 
 class Reservation(BaseModel):
     name : str
@@ -22,7 +26,6 @@ client = MongoClient(f"{MONGO_DB_URL}:{MONGO_DB_PORT}/?authMechanism=DEFAULT")
 db = client[DATABASE_NAME]
 
 collection = db[COLLECTION_NAME]
-
 app = FastAPI()
 
 
